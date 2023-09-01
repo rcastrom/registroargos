@@ -25,5 +25,8 @@ class TecnologicoSeeder extends Seeder
         DB::table('tecnologicos')->insert([
             'tec'=>'Tijuana'
         ]);
+        DB::table('tecnologicos')->insert([
+            'tec'=>'Otro'
+        ]);
     }
 }

@@ -26,12 +26,14 @@ class TalleresController extends Controller
 
     public function listado(Request $request)
     {
-        if($request->taller==1){
+        $taller_info = $request->taller;
+        if($taller_info==1){
             $nombres=Estudiante::select('appat','apmat','nombre','tec','pago','control')
                 ->orderBy('appat','asc')
                 ->orderBy('apmat','asc')
                 ->orderBy('nombre','asc')
                 ->with('tecnologicos')
+                ->where('taller',1)
                 ->get();
             $titulo="SIN REGISTRO";
             $pdf = \PDF::loadView('imprimir.talleres2',compact('nombres','titulo'));
@@ -39,6 +41,7 @@ class TalleresController extends Controller
         }else{
             $nombres=Estudiante::with('tecnologicos')
                 ->where('pago','=',1)
+                ->where('taller',$taller_info)
                 ->orderBy('appat','asc')
                 ->orderBy('apmat','asc')
                 ->orderBy('nombre','asc')
