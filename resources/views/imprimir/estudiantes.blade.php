@@ -16,6 +16,7 @@
             <th>No</th>
             <th>Nombre</th>
             <th>Monto</th>
+            <th>Folio</th>
         </thead>
         <tbody>
             @php
@@ -27,6 +28,7 @@
                     <td>{{$i}}</td>
                     <td>{{$nombre->appat}} {{$nombre->apmat}} {{$nombre->nombre}}</td>
                     <td>{{"$".number_format($nombre->monto,2,'.',',')}}</td>
+                    <td>{{$nombre->folio}}</td>
                 </tr>
                 @php
                     $i++;

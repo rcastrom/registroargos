@@ -106,6 +106,7 @@ class PagosController extends Controller
     public function update(Request $request, Estudiante $alumno)
     {
         Estudiante::where('id',$alumno->id)->update([
+            'folio'=>$request->folio,
             'pago'=>$request->pagado,
             'taller'=>$request->taller,
             'visita'=>$request->visita

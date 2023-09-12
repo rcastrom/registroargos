@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Estudiante extends Model
 {
     use HasFactory;
-    protected $fillable=['nombre','appat','apmat','control','tec','correo'];
+    protected $fillable=['nombre','appat','apmat','control','tec','correo','folio'];
 
     public function tecnologicos(){
         return $this->belongsTo(Tecnologico::class,'tec');

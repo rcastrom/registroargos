@@ -61,6 +61,11 @@
                                         <input type="email" id="correo" name="correo" required
                                                onblur="this.value=this.value.toLowerCase();" class="form-control" />
                                     </div>
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="folio">
+                                            <i class="fas fa-receipt"></i> Folio (en caso de ya contar con uno) </label>
+                                        <input type="number" id="folio" name="folio" class="form-control" />
+                                    </div>
                                     <button type="submit" class="btn btn-primary btn-rounded btn-block">Registrarse</button>
                                 </form>
                             </div>

@@ -33,7 +33,7 @@ class TalleresController extends Controller
                 ->orderBy('apmat','asc')
                 ->orderBy('nombre','asc')
                 ->with('tecnologicos')
-                ->where('taller',1)
+                ->where('taller','=',1)
                 ->get();
             $titulo="SIN REGISTRO";
             $pdf = \PDF::loadView('imprimir.talleres2',compact('nombres','titulo'));
@@ -41,7 +41,7 @@ class TalleresController extends Controller
         }else{
             $nombres=Estudiante::with('tecnologicos')
                 ->where('pago','=',1)
-                ->where('taller',$taller_info)
+                ->where('taller','=',$taller_info)
                 ->orderBy('appat','asc')
                 ->orderBy('apmat','asc')
                 ->orderBy('nombre','asc')

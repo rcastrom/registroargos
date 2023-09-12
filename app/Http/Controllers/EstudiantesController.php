@@ -39,7 +39,7 @@ class EstudiantesController extends Controller
             ]
         );
         $hoy = Carbon::now();
-        $limite = Carbon::createFromFormat('Y-m-d','2023-09-01');
+        $limite = Carbon::createFromFormat('Y-m-d','2023-09-08');
         $en_tiempo= $hoy->gt($limite);
         $monto = $en_tiempo ? "750" : "650";
         $estudiante = new Estudiante();
@@ -53,6 +53,7 @@ class EstudiantesController extends Controller
         $estudiante->pago = 0;
         $estudiante->taller = 1;
         $estudiante->visita = 1;
+        $estudiante->folio = $request->folio;
         $estudiante->save();
         return view('gracias');
     }
