@@ -2,6 +2,9 @@
 
 @section('content')
     <div class="container">
+        <p>La fila marcada en color verde, son estudiantes a quienes ya se les
+        registró el pago.
+        </p>
         <table class="table table-bordered data-table">
             <thead>
                 <tr>

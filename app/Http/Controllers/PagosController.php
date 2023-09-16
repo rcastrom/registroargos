@@ -7,8 +7,6 @@ use App\Models\Tecnologico;
 use App\Models\Taller;
 use App\Models\Visita;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\URL;
 use Yajra\DataTables\DataTables;
 
 class PagosController extends Controller
@@ -31,7 +29,8 @@ class PagosController extends Controller
                     'nombre',
                     'appat',
                     'apmat',
-                    'control'
+                    'control',
+                    'pago'
                 )->orderBy('appat','asc')
                     ->orderBy('apmat','asc')
                     ->orderBy('nombre','asc');
@@ -41,7 +40,8 @@ class PagosController extends Controller
                     'nombre',
                     'appat',
                     'apmat',
-                    'control'
+                    'control',
+                    'pago'
                 )->where('tec',$tec_asignado)
                     ->orderBy('appat','asc')
                     ->orderBy('apmat','asc')
@@ -55,6 +55,7 @@ class PagosController extends Controller
                    $btn = "<a class='edit btn btn-primary' href='$destino'>Seleccionar</a>";
                    return $btn;
                 })
+                ->setRowClass('{{ $pago == 1 ? "alert-success":""}}')
                 ->rawColumns(['action'])
                 ->make(true);
         }
