@@ -26,6 +26,12 @@ Route::get('/', function () {
 });
 
 Route::get('/estudiantes',[EstudiantesController::class,'index']);
+Route::get('/registrar',[EstudiantesController::class,'informar']);
+Route::post('/busqueda',[EstudiantesController::class,'buscar'])
+    ->name('buscar.registro');
+Route::post('/actualizar',[EstudiantesController::class, 'actualizar'])
+    ->name('actualizar.visitas');
+
 Route::get('/docentes',[DocentesController::class,'index']);
 Route::post('/estudiantes',[EstudiantesController::class,'registro'])
     ->name('registro.estudiantes');

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Taller;
+use App\Models\Visita;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use Carbon\Carbon;
@@ -54,7 +56,63 @@ class EstudiantesController extends Controller
         $estudiante->taller = 1;
         $estudiante->visita = 1;
         $estudiante->folio = $request->folio;
+        $estudiante->registrado = 0;
         $estudiante->save();
         return view('gracias');
+    }
+
+    public function informar(){
+        return view('registrar');
+    }
+
+    public function buscar(Request $request){
+        $request->validate(
+            [
+                'correo'=>'required|email'
+            ],
+            [
+                'correo.required'=>'Por favor, indique el correo electrónico cpn que se registró',
+                'correo.email'=>'El correo debe tener un formato válido'
+            ]
+        );
+        if(Estudiante::where('correo',$request->correo)->where('pago','=',0)->count()>0){
+            return view('sinpago');
+        }elseif (Estudiante::where('correo',$request->correo)->where('pago','=',1)->count()>0){
+            if(Estudiante::where('correo',$request->correo)->where('pago','=',1)->where('registrado','=',1)->count()>0){
+                return view('realizado');
+            }else{
+                $datos=Estudiante::where('correo',$request->correo)->first();
+                $talleres = Taller::where('capacidad','>',0)->get();
+                $visitas = Visita::where('capacidad','>',0)->get();
+                return view('seleccionar')->with(compact('datos',
+                    'talleres','visitas'));
+            }
+        }else{
+            return view('sinregistro');
+        }
+    }
+
+    public function actualizar(Request $request){
+        $id=base64_decode($request->control);
+        Estudiante::where('id',$id)->update(
+            [
+                'taller'=>$request->taller,
+                'visita'=>$request->visita,
+                'registrado'=>1
+            ]
+        );
+        $taller=Taller::find($request->taller);
+        $cant=$taller->capacidad<=1 ? 0 : $taller->capacidad - 1 ;
+        $taller->update([
+            'capacidad'=>$cant
+        ]);
+        $taller->save();
+        $visita = Visita::find($request->visita);
+        $ncant = $visita->capacidad<=1 ? 0 : $visita->capacidad - 1;
+        $visita->update([
+            'capacidad'=>$ncant
+        ]);
+        $visita->save();
+        return view('gracias2');
     }
 }
