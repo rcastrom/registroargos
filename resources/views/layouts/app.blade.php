@@ -49,6 +49,7 @@
                             <li class="nav-item"><a class="nav-link" href="/maestros">Pagos maestros</a></li>
                             <li class="nav-item"><a class="nav-link" href="/listado">Listado</a></li>
                             <li class="nav-item"><a class="nav-link" href="/talleres">Talleres</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/visitas">Visitas</a></li>
                             <li class="nav-item"><a class="nav-link" href="/administracion">Administración</a></li>
                         @endauth
                     </ul>
@@ -81,6 +82,7 @@
                                     <a href="/maestros" class="dropdown-item">Validar pagos maestros</a>
                                     <a href="/listado" class="dropdown-item">Listado</a>
                                     <a href="/talleres" class="dropdown-item">Talleres</a>
+                                    <a href="/visitas" class="dropdown-item">Visitas</a>
                                     <a href="/administracion" class="dropdown-item">Administración</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

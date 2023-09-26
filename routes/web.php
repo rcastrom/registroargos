@@ -8,7 +8,9 @@ use App\Http\Controllers\PagosController;
 use App\Http\Controllers\PagosMaestrosController;
 use App\Http\Controllers\ImprimirController;
 use App\Http\Controllers\TalleresController;
+use App\Http\Controllers\VisitasController;
 use App\Http\Controllers\AdministracionController;
+use App\Http\Controllers\SendEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,7 +57,12 @@ Route::get('/talleres',[TalleresController::class,'index']);
 Route::post('/imprimir/talleres',[TalleresController::class,'listado'])
     ->name('imprimir_talleres');
 
+Route::get('/visitas',[VisitasController::class,'index']);
+Route::post('/imprimir/visitas',[VisitasController::class,'listado'])
+    ->name('imprimir_visitas');
+
 Route::get('/administracion',[AdministracionController::class,'index']);
 Route::get('/administracion/pagados',[AdministracionController::class,'barchart']);
 Route::get('/administracion/talleres',[AdministracionController::class,'talleres']);
 Route::get('/administracion/visitas',[AdministracionController::class,'visitas']);
+Route::get('/administracion/correos',[SendEmailController::class, 'index']);

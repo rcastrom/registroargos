@@ -2,15 +2,12 @@
 
 namespace App\Http\Controllers;
 
-
-
 use App\Models\Estudiante;
-use App\Models\Taller;
+use App\Models\Visita;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-
-class TalleresController extends Controller
+class VisitasController extends Controller
 {
     public function __construct()
     {
@@ -18,37 +15,37 @@ class TalleresController extends Controller
     }
 
     public function index(): View{
-        $talleres = Taller::get();
-        return view('imprimir.talleres')
-            ->with(compact('talleres'));
+        $visitas = Visita::get();
+        return view('imprimir.visitas')
+            ->with(compact('visitas'));
     }
 
     public function listado(Request $request)
     {
-        $taller_info = $request->taller;
-        if($taller_info==1){
+        $visita_info = $request->visita;
+        if($visita_info==1){
             $nombres=Estudiante::select('appat','apmat','nombre','tec','pago','control')
                 ->orderBy('appat','asc')
                 ->orderBy('apmat','asc')
                 ->orderBy('nombre','asc')
                 ->with('tecnologicos')
-                ->where('taller','=',1)
+                ->where('visita','=',1)
                 ->get();
             $titulo="SIN REGISTRO";
-            $pdf = \PDF::loadView('imprimir.talleres2',compact('nombres','titulo'));
-            return $pdf->stream('listado_talleres.pdf');
+            $pdf = \PDF::loadView('imprimir.visitas2',compact('nombres','titulo'));
+            return $pdf->stream('listado_visitas.pdf');
         }else{
             $nombres=Estudiante::with('tecnologicos')
                 ->where('pago','=',1)
-                ->where('taller','=',$taller_info)
+                ->where('visita','=',$visita_info)
                 ->orderBy('appat','asc')
                 ->orderBy('apmat','asc')
                 ->orderBy('nombre','asc')
                 ->get();
-            $taller=Taller::find($request->taller);
-            $titulo=$taller->taller;
-            $pdf = \PDF::loadView('imprimir.talleres3',compact('nombres','titulo'));
-            return $pdf->stream('listado_talleres.pdf');
+            $visita=Visita::find($request->visita);
+            $titulo=$visita->visita;
+            $pdf = \PDF::loadView('imprimir.visitas3',compact('nombres','titulo'));
+            return $pdf->stream('listado_visitas.pdf');
         }
 
     }

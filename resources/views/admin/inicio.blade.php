@@ -7,7 +7,7 @@
             <div class="card-body">
                 <h4>Consulta</h4>
                 <ul>
-                    <li>Envío de correos</li>
+                    <li><a href="/administracion/correos">Envío de correos</a></li>
                     <li><a href="/administracion/pagados">Consulta de población pagada</a></li>
                     <li><a href="/administracion/talleres">Consulta de talleres</a></li>
                     <li><a href="/administracion/visitas">Consulta de visitas</a></li>
