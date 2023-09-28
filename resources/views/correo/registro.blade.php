@@ -21,7 +21,9 @@
             <h2>{{ $content['persona'] }}</h2>
         </div>
         <div class="card-body">
-
+            <p>
+                ¡Bienvenido!
+            </p>
             <p>Congreso Argos 2023 te da la más cordial bienvenida; este correo es para indicarte
                 que tu pago ha sido registrado.
             </p>
@@ -35,18 +37,18 @@
                 Te indicamos que ambos están bajo disponibilidad limitada.
             </p>
             <p>
-                <strong><u>Revisa la información concerniente a las visitas industriales</u></strong>, misma
+                <strong><u>Revisar la información concerniente a las visitas industriales</u></strong>, misma
                 que se encuentra en la página <a href="https://congresoargos.com/visitas-industriales/" target="_blank">
                     https://congresoargos.com/visitas-industriales/</a>
             </p>
             <p>
-                Es posible que para algunas actividades, se te solicite el siguiente código QR
+                Es posible que para algunas actividades, se te solicite un código QR; por favor, descárgalo
+                del siguiente enlace
                 <br>
-                {!! QrCode::size(250)->generate($content['quien']) !!}
+                <a href="https://registro.congresoargos.com/obtener/{{$content['quien']}}">Generar QR</a>
+
             </p>
-            <p>
-                ¡Bienvenido!
-            </p>
+
             <p>
                 Este correo electrónico fue generado de forma automatizada, por lo que nadie estará al
                 pendiente de la información.

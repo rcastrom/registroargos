@@ -12,8 +12,11 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
+                <div class="col-lg-6 col-12">
                     <a href="/registrar" class="custom-btn btn custom-link mt-3">Registrar visita y taller</a>
+                </div>
+                <div class="col-lg-6 col-12">
+                    <a href="/estatus" class="custom-btn btn custom-link mt-3">Consultar estatus del registro</a>
                 </div>
             </div>
         </div>

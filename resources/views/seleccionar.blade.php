@@ -20,12 +20,12 @@
                                                 <div class="col-xs-3">
                                                     <select name="taller" id="taller" class="form-control col-sm-2" required>
                                                         @foreach($talleres as $taller)
-                                                            @php
-                                                                $txt = $datos->taller == $taller->id ? "selected": "";
-                                                            @endphp
-                                                            <option value="{{$taller->id}}" {{$txt}}>{{$taller->taller}}</option>
+                                                            @if($taller->id==1)
+                                                                <option value="" selected>--Seleccione--</option>
+                                                            @else
+                                                                <option value="{{$taller->id}}">{{$taller->taller}}</option>
+                                                            @endif
                                                         @endforeach
-
                                                     </select>
                                                 </div>
                                             </div>
@@ -38,10 +38,11 @@
                                                 <div class="col-xs-3">
                                                     <select name="visita" id="visita" class="form-control col-sm-2" required>
                                                         @foreach($visitas as $visita)
-                                                            @php
-                                                                $txt = $datos->visita == $visita->id ? "selected": "";
-                                                            @endphp
-                                                            <option value="{{$visita->id}}" {{$txt}}>{{$visita->visita}}</option>
+                                                            @if($visita->id==1)
+                                                                <option value="" selected>--Seleccione--</option>
+                                                            @else
+                                                                <option value="{{$visita->id}}">{{$visita->visita}}</option>
+                                                            @endif
                                                         @endforeach
                                                     </select>
                                                 </div>

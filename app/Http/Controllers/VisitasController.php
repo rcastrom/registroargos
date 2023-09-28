@@ -15,7 +15,7 @@ class VisitasController extends Controller
     }
 
     public function index(): View{
-        $visitas = Visita::get();
+        $visitas = Visita::orderBy('visita','ASC')->get();
         return view('imprimir.visitas')
             ->with(compact('visitas'));
     }

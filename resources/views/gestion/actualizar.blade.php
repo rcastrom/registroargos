@@ -55,7 +55,7 @@
                 <div class="form-group">
                     <label class="col-sm-3 mt-3 control-label" for="folio">Folio asignado</label>
                     <div class="col-sm-9">
-                        <input type="number" class="form-control" name="folio" id="folio">
+                        <input type="number" class="form-control" name="folio" id="folio" value="{{$estudiante->folio}}">
                     </div>
                 </div>
                 <div class="form-group">

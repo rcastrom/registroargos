@@ -18,7 +18,7 @@ class TalleresController extends Controller
     }
 
     public function index(): View{
-        $talleres = Taller::get();
+        $talleres = Taller::orderBy('taller','ASC')->get();
         return view('imprimir.talleres')
             ->with(compact('talleres'));
     }

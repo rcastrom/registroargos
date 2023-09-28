@@ -11,6 +11,8 @@
                     <li><a href="/administracion/pagados">Consulta de población pagada</a></li>
                     <li><a href="/administracion/talleres">Consulta de talleres</a></li>
                     <li><a href="/administracion/visitas">Consulta de visitas</a></li>
+                    <li><a href="/administracion/enviados">Situación de correos enviados</a></li>
+                    <li><a href="/administracion/balanceo">Balanceo</a></li>
                 </ul>
             </div>
         </div>

@@ -115,4 +115,42 @@ class EstudiantesController extends Controller
         $visita->save();
         return view('gracias2');
     }
+
+    public function estatus_original(){
+        return view('consultar_estatus1');
+    }
+
+    public function estatus(Request $request){
+        $request->validate(
+            [
+                'correo'=>'required|email'
+            ],
+            [
+                'correo.required'=>'Por favor, indique el correo electrónico cpn que se registró',
+                'correo.email'=>'El correo debe tener un formato válido'
+            ]
+        );
+        if(Estudiante::where('correo',$request->correo)->count()>0){
+            if(Estudiante::where('correo',$request->correo)->where('pago','=',0)->count()>0){
+                return view('sinpago');
+            }elseif (Estudiante::where('correo',$request->correo)->where('pago','=',1)->count()>0){
+                $datos=Estudiante::where('correo',$request->correo)->first();
+                $taller_id=$datos->taller;
+                $visita_id=$datos->visita;
+                $taller_seleccionado=Taller::find($taller_id);
+                $visita_seleccionada=Visita::find($visita_id);
+                $taller=$taller_seleccionado->taller;
+                $visita=$visita_seleccionada->visita;
+                return view('consultar_estatus2')->with(compact('datos',
+                    'taller','visita'));
+
+            }
+        }else{
+            return view('sinregistro');
+        }
+    }
+
+    public function gracias(){
+        return view('gracias');
+    }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Estudiante;
 use App\Models\Taller;
+use App\Models\Visita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -57,6 +58,52 @@ class AdministracionController extends Controller
             ->groupBy('visitas.visita')
             ->get();
         return view('admin.visitas')->with(compact('conteos'));
+    }
+
+    public function enviados(){
+        $enviados = Estudiante::where('pago',1)->where('enviado',1)->count();
+        $faltan = Estudiante::where('pago',1)->where('enviado',0)->count();
+        $total = Estudiante::where('pago',1)->count();
+        return view('admin.conteo')->with(compact('enviados',
+            'faltan','total'));
+    }
+
+    public function balanceo(){
+        // Primero talleres
+        $talleres=Taller::select('id','creal')->get();
+        foreach ($talleres as $taller){
+            $id=$taller->id;
+            if($id!=1){
+                $inscritos=Estudiante::where('pago',1)->where('taller',$id)->count();
+                $capacidad = $taller->creal;
+                $capacidad_real = $capacidad - $inscritos;
+                if($capacidad_real > 0){
+                    Taller::where('id',$id)->update(
+                        [
+                            'capacidad'=>$capacidad_real
+                        ]
+                    );
+                }
+            }
+        }
+        //Ahora visitas
+        $visitas=Visita::select('id','creal')->get();
+        foreach ($visitas as $visita){
+            $id=$visita->id;
+            if($id!=1){
+                $inscritos=Estudiante::where('pago',1)->where('visita',$id)->count();
+                $capacidad = $visita->creal;
+                $capacidad_real = $capacidad - $inscritos;
+                if($capacidad_real > 0){
+                    Visita::where('id',$id)->update(
+                        [
+                            'capacidad'=>$capacidad_real
+                        ]
+                    );
+                }
+            }
+        }
+        return view('admin.actualizado');
     }
 
 }

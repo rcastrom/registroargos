@@ -11,6 +11,7 @@ use App\Http\Controllers\TalleresController;
 use App\Http\Controllers\VisitasController;
 use App\Http\Controllers\AdministracionController;
 use App\Http\Controllers\SendEmailController;
+use App\Http\Controllers\QRController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,3 +67,12 @@ Route::get('/administracion/pagados',[AdministracionController::class,'barchart'
 Route::get('/administracion/talleres',[AdministracionController::class,'talleres']);
 Route::get('/administracion/visitas',[AdministracionController::class,'visitas']);
 Route::get('/administracion/correos',[SendEmailController::class, 'index']);
+Route::get('/administracion/enviados',[AdministracionController::class, 'enviados']);
+Route::get('/administracion/balanceo',[AdministracionController::class, 'balanceo']);
+
+Route::get('/obtener/{id}/',[QRController::class,'index']);
+
+Route::get('/estatus',[EstudiantesController::class,'estatus_original']);
+Route::post('/consulta',[EstudiantesController::class,'estatus'])
+->name('consultar.estatus');
+Route::get('/gracias',[EstudiantesController::class,'gracias']);

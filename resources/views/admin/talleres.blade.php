@@ -5,7 +5,7 @@
         <div class="card">
             <div class="card-header">Registro de talleres</div>
             <div class="card-body">
-                <table>
+                <table class="table table-striped">
                     <thead>
                         <th>Taller</th>
                         <th>Inscritos</th>

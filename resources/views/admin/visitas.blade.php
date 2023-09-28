@@ -5,7 +5,7 @@
         <div class="card">
             <div class="card-header">Registro de visitas industriales</div>
             <div class="card-body">
-                <table>
+                <table class="table table-striped">
                     <thead>
                     <th>Visitas</th>
                     <th>Inscritos</th>
